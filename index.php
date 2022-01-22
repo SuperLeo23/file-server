@@ -1,36 +1,33 @@
 <?php
+if (!file_exists('uploads/')) {
+    mkdir('uploads/', 0777, true); // create upload directory if it doesn't exist
+}
 if(isset($_POST['cover_up']))
     {
 
     $imgFile = $_FILES['selFilename']['name'];
     $tmp_dir = $_FILES['selFilename']['tmp_name'];
-    $imgSize = $_FILES['selFilename']['size'];
     $dirName = $_POST['dirName'];
     $date=date('Ymd');
     
-    //echo count($_FILES['selFilename']['name']);
-
     if (!file_exists('uploads/'.$date.'/')) {
-        mkdir('uploads/'.$date.'/', 0777, true);
+        mkdir('uploads/'.$date.'/', 0777, true); // create directory of current date if it doesn't already exist
     }
     if (!file_exists('uploads/'.$date.'/'.$dirName.'/')) {
-        mkdir('uploads/'.$date.'/'.$dirName.'/', 0777, true);
+        mkdir('uploads/'.$date.'/'.$dirName.'/', 0777, true); // create custom directory if it doesn't exist
     }
     if(!empty($imgFile))
         {
         $upload_dir = 'uploads/'.$date.'/'; // upload directory
 
         $imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
-        // valid image extensions
-        //$valid_extensions = array('jpeg', 'jpg', 'png', 'gif');  valid extensions
-        // rename uploading image --> rand(1000,1000000).".".
 
         if ($dirName != ''){
             $upload_dir = 'uploads/'.$date.'/'.$dirName.'/'; // upload directory
         }
 
         move_uploaded_file($tmp_dir,$upload_dir.$imgFile);
-        echo "<h3 style='color: rgb(0, 255, 0); text-align: center'>Succesfully uploaded</h3>";
+        echo "<h3 style='color: rgb(0, 255, 0); text-align: center'>Succesfully uploaded</h3>"; // Success message
 
         }
     }
@@ -54,7 +51,7 @@ if(isset($_POST['cover_up']))
     <title>LocalSave</title>
   </head>
   <body style="background-color: black; color: white">
-  <a class="nav-link" href="uploads/">->Uploads<-</a>
+  <a class="nav-link" href="uploads/">Uploads</a>
     <form method="post" enctype="multipart/form-data" class="form">
       <br /><br /><br />
       <label class="btn btn-default btn-sm center-block btn-file">
