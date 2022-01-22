@@ -2,7 +2,7 @@
 A php based file server to upload/download files to/from your pc from any device.
 
 # Setup
-1. Clone the repository to your "htdocs" folder (root:/xammp/htdocs)
+1. Clone the repository to your "htdocs" folder (root:/xammp/htdocs/file-server)
 2. Run xammp
 3. Start Apache
 
